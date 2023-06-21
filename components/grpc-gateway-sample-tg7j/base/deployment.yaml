@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: grpc-gateway-sample-tg7j
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: grpc-gateway-sample-tg7j
+    app.kubernetes.io/part-of: grpc-gateway-sample
+  name: grpc-gateway-sample-tg7j
+spec:
+  replicas: 1
+  revisionHistoryLimit: 0
+  selector:
+    matchLabels:
+      app: nodejs-app
+      app.kubernetes.io/instance: grpc-gateway-sample-tg7j
+      app.kubernetes.io/name: tekton-results-api-14
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nodejs-app
+        app.kubernetes.io/instance: grpc-gateway-sample-tg7j
+        app.kubernetes.io/name: tekton-results-api-14
+    spec:
+      containers:
+      - args:
+        - -grpc-server-endpoint
+        - grpc-gateway-sample-2.oandriie-tenant.svc.cluster.local:50051
+        env:
+        - name: GODEBUG
+          value: http2debug=0
+        image: docker.io/aandrienko/grpc-gateway
+        name: my-nodejs
+        ports:
+        - containerPort: 3001
+        resources:
+          requests:
+            cpu: 10m
+            memory: 50Mi
+        volumeMounts:
+        - mountPath: /etc/tls
+          name: tls
+          readOnly: true
+      volumes:
+      - name: tls
+        secret:
+          secretName: grpc-gateway-sample-2
+status: {}
