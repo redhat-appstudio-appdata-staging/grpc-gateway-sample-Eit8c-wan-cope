@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: grpc-gateway-sample-tg7j
+spec:
+  replicas: 1
+  selector: {}
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: quay.io/redhat-user-workloads-stage/oandriie-tenant/grpc-gateway-sample/grpc-gateway-sample-tg7j@sha256:e33464316ea4440b13fd33589897f14a318dfb6de42c8fa5f93bd18de35b45a8
+        name: my-nodejs
+        resources: {}
+status: {}
