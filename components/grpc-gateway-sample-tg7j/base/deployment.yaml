@@ -33,7 +33,7 @@ spec:
         env:
         - name: GODEBUG
           value: http2debug=0
-        image: docker.io/aandrienko/grpc-gateway
+        image: quay.io/redhat-user-workloads-stage/oandriie-tenant/grpc-gateway-sample/grpc-gateway-sample-tg7j@sha256:e33464316ea4440b13fd33589897f14a318dfb6de42c8fa5f93bd18de35b45a8
         name: my-nodejs
         ports:
         - containerPort: 3001
